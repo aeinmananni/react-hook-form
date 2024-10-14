@@ -6,6 +6,7 @@ import { LoginTyped } from "../../models";
 const className = "border rounded-md w-full p-1";
 const FormYoutube = () => {
   const { register, handleSubmit, reset } = useForm<LoginTyped>();
+
   const onSubmite = (data: LoginTyped) => {
     console.log(data);
     reset();
