@@ -2,10 +2,10 @@ import { useForm } from "react-hook-form";
 import Button from "../../UI/button";
 import Input from "../../UI/input";
 import { LoginTyped } from "../../models";
-
+import { DevTool } from "@hookform/devtools";
 const className = "border rounded-md w-full p-1";
 const FormYoutube = () => {
-  const { register, handleSubmit, reset } = useForm<LoginTyped>();
+  const { register, handleSubmit, reset, control } = useForm<LoginTyped>();
 
   const onSubmite = (data: LoginTyped) => {
     console.log(data);
@@ -37,6 +37,7 @@ const FormYoutube = () => {
           />
         </div>
       </form>
+      <DevTool control={control} />
     </div>
   );
 };
