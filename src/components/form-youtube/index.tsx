@@ -15,20 +15,35 @@ const FormYoutube = () => {
     <div className="w-full flex justify-center p-6 flex-col items-center gap-4">
       <h1 className="text-3xl">Wellcom To YouTube</h1>
       <form
+        noValidate
         onSubmit={handleSubmit(onSubmite)}
         className="flex gap-3 flex-col justify-center items-center w-1/2 border-2 rounded-lg p-4"
       >
         <Input
-          {...register("userName")}
+          {...register("userName", {
+            required: "نام کابری الزامی است",
+          })}
           className={className}
           label="userName"
         />
         <Input
-          {...register("password")}
+          {...register("password", {
+            required: "رمزعبور الزامی است",
+          })}
           className={className}
           label="password"
         />
-        <Input {...register("email")} className={className} label="email" />
+        <Input
+          {...register("email", {
+            required: "ایمیل الزامی است",
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+              message: "فرمت ایمیل اشتباه است",
+            },
+          })}
+          className={className}
+          label="email"
+        />
         <div className="w-full flex justify-center items-center">
           <Button
             type="submit"
