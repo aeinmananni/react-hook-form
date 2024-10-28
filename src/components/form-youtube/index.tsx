@@ -5,7 +5,13 @@ import { LoginTyped } from "../../models";
 import { DevTool } from "@hookform/devtools";
 const className = "border rounded-md w-full p-1";
 const FormYoutube = () => {
-  const { register, handleSubmit, reset, control } = useForm<LoginTyped>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    control,
+    formState: { errors },
+  } = useForm<LoginTyped>();
 
   const onSubmite = (data: LoginTyped) => {
     console.log(data);
@@ -24,6 +30,7 @@ const FormYoutube = () => {
             required: "نام کابری الزامی است",
           })}
           className={className}
+          errors={errors && errors.userName?.message}
           label="userName"
         />
         <Input
@@ -31,6 +38,7 @@ const FormYoutube = () => {
             required: "رمزعبور الزامی است",
           })}
           className={className}
+          errors={errors && errors.password?.message}
           label="password"
         />
         <Input
@@ -42,6 +50,7 @@ const FormYoutube = () => {
             },
           })}
           className={className}
+          errors={errors && errors.email?.message}
           label="email"
         />
         <div className="w-full flex justify-center items-center">
