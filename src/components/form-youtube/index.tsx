@@ -11,7 +11,11 @@ const FormYoutube = () => {
     reset,
     control,
     formState: { errors },
-  } = useForm<LoginTyped>();
+  } = useForm<LoginTyped>({
+    defaultValues: {
+      userName: "admin",
+    },
+  });
 
   const onSubmite = (data: LoginTyped) => {
     console.log(data);
@@ -44,6 +48,17 @@ const FormYoutube = () => {
         <Input
           {...register("email", {
             required: "ایمیل الزامی است",
+            validate: {
+              notAdmin: (fild: string) => {
+                return fild !== "test@gmail.com" || "ایمیل دیگری وارد کنید";
+              },
+              notBlockList: (fild: string) => {
+                return (
+                  fild !== "FFF@gamil.com" ||
+                  "ایمیل در حالت بلاک قرار دارد ایمیل دیگری وارد کنید"
+                );
+              },
+            },
             pattern: {
               value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
               message: "فرمت ایمیل اشتباه است",
