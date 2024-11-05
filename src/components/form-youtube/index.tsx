@@ -14,6 +14,12 @@ const FormYoutube = () => {
   } = useForm<LoginTyped>({
     defaultValues: {
       userName: "admin",
+      email: "",
+      password: "",
+      socialMedia: {
+        facbook: "ddd",
+        twiter: "",
+      },
     },
   });
 
@@ -44,6 +50,22 @@ const FormYoutube = () => {
           className={className}
           errors={errors && errors.password?.message}
           label="password"
+        />
+        <Input
+          {...register("socialMedia.twiter", {
+            required: "Twiter الزامی است",
+          })}
+          className={className}
+          errors={errors && errors.socialMedia?.twiter?.message}
+          label="Twiter"
+        />
+        <Input
+          {...register("socialMedia.facbook", {
+            required: "facsBook الزامی است",
+          })}
+          className={className}
+          errors={errors && errors.socialMedia?.facbook?.message}
+          label="facsBook"
         />
         <Input
           {...register("email", {
