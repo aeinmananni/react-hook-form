@@ -20,6 +20,7 @@ const FormYoutube = () => {
         facbook: "ddd",
         twiter: "",
       },
+      phones: ["", "", ""],
     },
   });
 
@@ -60,12 +61,31 @@ const FormYoutube = () => {
           label="Twiter"
         />
         <Input
-          {...register("socialMedia.facbook", {
-            required: "facsBook الزامی است",
-          })}
+          {...register("socialMedia.facbook")}
           className={className}
           errors={errors && errors.socialMedia?.facbook?.message}
           label="facsBook"
+        />
+        <Input
+          {...register("phones.0")}
+          className={className}
+          errors={errors && errors.socialMedia?.facbook?.message}
+          label="mobile"
+          id="mobile"
+        />
+        <Input
+          {...register("phones.1")}
+          className={className}
+          errors={errors && errors.socialMedia?.facbook?.message}
+          label="home"
+          id="home"
+        />
+        <Input
+          {...register("phones.2")}
+          className={className}
+          errors={errors && errors.socialMedia?.facbook?.message}
+          label="office"
+          id="office"
         />
         <Input
           {...register("email", {
