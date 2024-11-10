@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import Button from "../../UI/button";
 import Input from "../../UI/input";
 import { LoginTyped } from "../../models";
@@ -21,9 +21,13 @@ const FormYoutube = () => {
         twiter: "",
       },
       phones: ["", "", ""],
+      skills: [{ hobbise: "" }],
     },
   });
-
+  const { fields, append, remove } = useFieldArray({
+    name: "skills",
+    control,
+  });
   const onSubmite = (data: LoginTyped) => {
     console.log(data);
     reset();
@@ -110,6 +114,35 @@ const FormYoutube = () => {
           errors={errors && errors.email?.message}
           label="email"
         />
+
+        <div className="w-full">
+          {fields.map((filed, index) => (
+            <div
+              className="w-full gap-2 flex justify-center items-center"
+              key={filed.id}
+            >
+              <Input
+                label="add Skills"
+                {...register(`skills.${index}.hobbise`)}
+                className={className}
+              />
+              <Button
+                onClick={() => append({ hobbise: "" })}
+                type="button"
+                text="add-skills"
+                className=" bg-purple-600 text-white h-max w-1/2 mt-5"
+              />
+              {index > 0 && (
+                <Button
+                  onClick={() => remove(index)}
+                  type="button"
+                  text="remove-skills"
+                  className=" bg-red-500  w-1/2 mt-5"
+                />
+              )}
+            </div>
+          ))}
+        </div>
         <div className="w-full flex justify-center items-center">
           <Button
             type="submit"

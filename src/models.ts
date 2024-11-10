@@ -8,5 +8,6 @@ export type LoginTyped ={
             twiter?:string
             facbook?:string
      }
-     phones?:string[]
+     phones?:string[],
+     skills?:{hobbise:string}[]
 }
