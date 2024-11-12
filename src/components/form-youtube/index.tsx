@@ -15,6 +15,8 @@ const FormYoutube = () => {
     defaultValues: {
       userName: "admin",
       email: "",
+      age: 24,
+      dateofbirthDay: "2022/03/12",
       password: "",
       socialMedia: {
         facbook: "ddd",
@@ -55,6 +57,24 @@ const FormYoutube = () => {
           className={className}
           errors={errors && errors.password?.message}
           label="password"
+        />
+        <Input
+          {...register("age", {
+            required: "سن الزامی است",
+            valueAsNumber: true,
+          })}
+          className={className}
+          errors={errors && errors.age?.message}
+          label="سن"
+        />
+        <Input
+          type="date"
+          {...register("dateofbirthDay", {
+            valueAsDate: true,
+          })}
+          className={className}
+          errors={errors && errors.dateofbirthDay?.message}
+          label="تاریخ تولد"
         />
         <Input
           {...register("socialMedia.twiter", {
@@ -115,7 +135,13 @@ const FormYoutube = () => {
           label="email"
         />
 
-        <div className="w-full">
+        <div className="w-full flex flex-col gap-4">
+          <Button
+            onClick={() => append({ hobbise: "" })}
+            type="button"
+            text="add-skills"
+            className=" bg-purple-600 text-white h-max w-full mt-5 rounded-lg"
+          />
           {fields.map((filed, index) => (
             <div
               className="w-full gap-2 flex justify-center items-center"
@@ -126,20 +152,13 @@ const FormYoutube = () => {
                 {...register(`skills.${index}.hobbise`)}
                 className={className}
               />
+
               <Button
-                onClick={() => append({ hobbise: "" })}
+                onClick={() => remove(index)}
                 type="button"
-                text="add-skills"
-                className=" bg-purple-600 text-white h-max w-1/2 mt-5"
+                text="remove-skills"
+                className=" bg-red-500 text-white rounded-lg  w-1/2 mt-5"
               />
-              {index > 0 && (
-                <Button
-                  onClick={() => remove(index)}
-                  type="button"
-                  text="remove-skills"
-                  className=" bg-red-500  w-1/2 mt-5"
-                />
-              )}
             </div>
           ))}
         </div>
