@@ -3,12 +3,14 @@ import Button from "../../UI/button";
 import Input from "../../UI/input";
 import { LoginTyped } from "../../models";
 import { DevTool } from "@hookform/devtools";
+import { useEffect } from "react";
 const className = "border rounded-md w-full p-1";
 const FormYoutube = () => {
   const {
     register,
     handleSubmit,
     reset,
+    watch,
     control,
     formState: { errors },
   } = useForm<LoginTyped>({
@@ -34,6 +36,15 @@ const FormYoutube = () => {
     console.log(data);
     reset();
   };
+
+  useEffect(() => {
+    const subscribe = watch((value) => {
+      console.log(value);
+    });
+
+    return () => subscribe.unsubscribe();
+  }, [watch]);
+
   return (
     <div className="w-full flex justify-center p-6 flex-col items-center gap-4">
       <h1 className="text-3xl">Wellcom To YouTube</h1>
