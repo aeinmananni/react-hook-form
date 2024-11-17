@@ -12,6 +12,7 @@ const FormYoutube = () => {
     reset,
     watch,
     control,
+    getValues,
     formState: { errors },
   } = useForm<LoginTyped>({
     defaultValues: {
@@ -173,11 +174,17 @@ const FormYoutube = () => {
             </div>
           ))}
         </div>
-        <div className="w-full flex justify-center items-center">
+        <div className="w-full flex gap-2 flex-col justify-center items-center ">
           <Button
             type="submit"
             text="Submit"
             className="bg-green-500 p-1 text-white w-1/2 rounded-md"
+          />
+          <Button
+            type="button"
+            text="GetValue"
+            onClick={() => console.log("GETVALUES : ", getValues("password"))}
+            className="bg-yellow-500 p-1 text-white w-1/2 rounded-md"
           />
         </div>
       </form>
