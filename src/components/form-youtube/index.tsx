@@ -13,6 +13,7 @@ const FormYoutube = () => {
     watch,
     control,
     getValues,
+    setValue,
     formState: { errors },
   } = useForm<LoginTyped>({
     defaultValues: {
@@ -185,6 +186,16 @@ const FormYoutube = () => {
             text="GetValue"
             onClick={() => console.log("GETVALUES : ", getValues("password"))}
             className="bg-yellow-500 p-1 text-white w-1/2 rounded-md"
+          />
+          <Button
+            type="button"
+            text="GetValue"
+            onClick={() => {
+              setValue("password", "AAAAAAA : ", {
+                shouldTouch: true,
+              });
+            }}
+            className="bg-rose-500 p-1 text-white w-1/2 rounded-md"
           />
         </div>
       </form>
