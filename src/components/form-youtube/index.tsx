@@ -14,7 +14,7 @@ const FormYoutube = () => {
     control,
     getValues,
     setValue,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm<LoginTyped>({
     defaultValues: {
       userName: "admin",
@@ -46,7 +46,7 @@ const FormYoutube = () => {
 
     return () => subscribe.unsubscribe();
   }, [watch]);
-
+  console.log(isDirty);
   return (
     <div className="w-full flex justify-center p-6 flex-col items-center gap-4">
       <h1 className="text-3xl">Wellcom To YouTube</h1>
