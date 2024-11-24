@@ -58,6 +58,7 @@ const FormYoutube = () => {
         <Input
           {...register("userName", {
             required: "نام کابری الزامی است",
+            disabled: getValues("password") ? false : true,
           })}
           className={className}
           errors={errors && errors.userName?.message}
