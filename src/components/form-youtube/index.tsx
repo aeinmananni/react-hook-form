@@ -1,4 +1,10 @@
-import { useForm, useFieldArray } from "react-hook-form";
+import {
+  useForm,
+  useFieldArray,
+  FormState,
+  FieldErrors,
+  FieldValues,
+} from "react-hook-form";
 import Button from "../../UI/button";
 import Input from "../../UI/input";
 import { LoginTyped } from "../../models";
@@ -14,6 +20,7 @@ const FormYoutube = () => {
     control,
     getValues,
     setValue,
+
     formState: { errors, isDirty },
   } = useForm<LoginTyped>({
     defaultValues: {
@@ -34,9 +41,12 @@ const FormYoutube = () => {
     name: "skills",
     control,
   });
-  const onSubmite = (data: LoginTyped) => {
-    console.log(data);
+  const onSubmite = (data: FieldValues) => {
+    console.log("GGGGG", data);
     reset();
+  };
+  const onErrorHandler = (errors: FieldErrors<FormState<LoginTyped>>) => {
+    console.log("RRRRRRRRRRRRRRRRRRRRR : ", errors);
   };
 
   useEffect(() => {
@@ -52,7 +62,7 @@ const FormYoutube = () => {
       <h1 className="text-3xl">Wellcom To YouTube</h1>
       <form
         noValidate
-        onSubmit={handleSubmit(onSubmite)}
+        onSubmit={handleSubmit(onSubmite, onErrorHandler)}
         className="flex gap-3 flex-col justify-center items-center w-1/2 border-2 rounded-lg p-4"
       >
         <Input
