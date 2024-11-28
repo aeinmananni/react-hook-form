@@ -21,7 +21,7 @@ const FormYoutube = () => {
     getValues,
     setValue,
 
-    formState: { errors, isDirty },
+    formState: { errors, isDirty, isValid },
   } = useForm<LoginTyped>({
     defaultValues: {
       userName: "admin",
@@ -56,7 +56,7 @@ const FormYoutube = () => {
 
     return () => subscribe.unsubscribe();
   }, [watch]);
-  console.log(isDirty);
+  console.log("Is Valid Element : ", isValid);
   return (
     <div className="w-full flex justify-center p-6 flex-col items-center gap-4">
       <h1 className="text-3xl">Wellcom To YouTube</h1>
@@ -190,7 +190,10 @@ const FormYoutube = () => {
           <Button
             type="submit"
             text="Submit"
-            className="bg-green-500 p-1 text-white w-1/2 rounded-md"
+            className={` ${
+              isDirty && isValid ? "bg-green-500" : "bg-gray-500 bg-opacity-20"
+            }  p-1 text-white w-1/2 rounded-md`}
+            disabled={!isDirty || !isValid}
           />
           <Button
             type="button"
