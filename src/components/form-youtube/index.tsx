@@ -21,7 +21,14 @@ const FormYoutube = () => {
     getValues,
     setValue,
 
-    formState: { errors, isDirty, isValid },
+    formState: {
+      errors,
+      isDirty,
+      isValid,
+      isSubmitting,
+      isSubmitSuccessful,
+      submitCount,
+    },
   } = useForm<LoginTyped>({
     defaultValues: {
       userName: "admin",
@@ -56,7 +63,10 @@ const FormYoutube = () => {
 
     return () => subscribe.unsubscribe();
   }, [watch]);
-  console.log("Is Valid Element : ", isValid);
+  // console.log("Is Valid Element : ", isValid);
+  console.log("isSubmitting : ", isSubmitting);
+  console.log("isSubmitSuccessful : ", isSubmitSuccessful);
+  console.log("Submit Count  : ", submitCount);
   return (
     <div className="w-full flex justify-center p-6 flex-col items-center gap-4">
       <h1 className="text-3xl">Wellcom To YouTube</h1>
