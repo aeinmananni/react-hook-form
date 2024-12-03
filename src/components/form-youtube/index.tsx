@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   useForm,
   useFieldArray,
@@ -50,29 +52,32 @@ const FormYoutube = () => {
   });
   const onSubmite = (data: FieldValues) => {
     console.log("GGGGG", data);
-    reset();
   };
-  const onErrorHandler = (errors: FieldErrors<FormState<LoginTyped>>) => {
-    console.log("RRRRRRRRRRRRRRRRRRRRR : ", errors);
-  };
+  // const onErrorHandler = (errors: FieldErrors<FormState<LoginTyped>>) => {
+  //   console.log("RRRRRRRRRRRRRRRRRRRRR : ", errors);
+  // };
+
+  // useEffect(() => {
+  //   const subscribe = watch((value) => {
+  //     console.log(value);
+  //   });
+
+  //   return () => subscribe.unsubscribe();
+  // }, [watch]);
+  // console.log("Is Valid Element : ", isValid);
+  // console.log("isSubmitting : ", isSubmitting);
+  // console.log("isSubmitSuccessful : ", isSubmitSuccessful);
+  // console.log("Submit Count  : ", submitCount);
 
   useEffect(() => {
-    const subscribe = watch((value) => {
-      console.log(value);
-    });
-
-    return () => subscribe.unsubscribe();
-  }, [watch]);
-  // console.log("Is Valid Element : ", isValid);
-  console.log("isSubmitting : ", isSubmitting);
-  console.log("isSubmitSuccessful : ", isSubmitSuccessful);
-  console.log("Submit Count  : ", submitCount);
+    reset();
+  }, [isSubmitSuccessful]);
   return (
     <div className="w-full flex justify-center p-6 flex-col items-center gap-4">
       <h1 className="text-3xl">Wellcom To YouTube</h1>
       <form
         noValidate
-        onSubmit={handleSubmit(onSubmite, onErrorHandler)}
+        onSubmit={handleSubmit(onSubmite)}
         className="flex gap-3 flex-col justify-center items-center w-1/2 border-2 rounded-lg p-4"
       >
         <Input
