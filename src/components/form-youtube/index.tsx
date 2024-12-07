@@ -32,6 +32,7 @@ const FormYoutube = () => {
       submitCount,
     },
   } = useForm<LoginTyped>({
+    mode: "onBlur",
     defaultValues: {
       userName: "admin",
       email: "",
